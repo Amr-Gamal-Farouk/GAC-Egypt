@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:gac/provider/user_provider.dart';
+import 'package:gac/screen/login_screen.dart';
 import 'package:gac/screen/responsive_layout.dart';
 import 'package:gac/screen/splash_screen.dart';
 import 'package:gac/util/theme.dart';
@@ -40,7 +41,7 @@ class _MyAppState extends State<MyApp> {
               debugShowCheckedModeBanner: false,
               title: 'GAC Egypt',
               theme: appTheme,
-              home: ResponsiveLayout(),
+              home: LoginScreen(),
             ),
           );
         }
