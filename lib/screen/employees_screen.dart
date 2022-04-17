@@ -17,16 +17,19 @@ class _EmployeesScreenState extends State<EmployeesScreen> {
 
   @override
   void initState() {
-    // setState(() {
-    //   isLoading = true;
-    // });
-    // _userState = Provider.of<UserProvider>(context, listen: false);
-    // _userState.getEmploys();
-    // setState(() {
-    //   isLoading = false;
-    // });
+    setState(() {
+      isLoading = true;
+    });
+    _userState = Provider.of<UserProvider>(context, listen: false);
+    getData();
 
     super.initState();
+  }
+  getData()async{
+    await _userState.getEmploys();
+    setState(() {
+      isLoading = false;
+    });
   }
 
   @override
@@ -34,19 +37,19 @@ class _EmployeesScreenState extends State<EmployeesScreen> {
     return Scaffold(
       appBar: AppBar(
         title: const Text("Directory"),
-        automaticallyImplyLeading: false,
+        automaticallyImplyLeading: true,
       ),
       body:
-      // (isLoading) ? const CircularProgressIndicator(color: Colors.indigo,)
-      //     : Consumer <UserProvider>(
-      //   builder: (context, provider, child) {
-      //     return
+      (isLoading) ? Center(child: const CircularProgressIndicator(color: Colors.indigo,))
+          : Consumer <UserProvider>(
+        builder: (context, provider, child) {
+          return
             ListView.builder(
-            itemCount: 20,//provider.allEmploy.length,
+            itemCount: provider.allEmploy.length,
             itemBuilder: (context, index) {
-              return  EmployItem();//(employ: provider.allEmploy[index],);
-            // },
-    // );
+              return  EmployItem(employ: provider.allEmploy[index],);
+            },
+    );
         },
       ),
     );

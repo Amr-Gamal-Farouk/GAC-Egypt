@@ -2,6 +2,8 @@
 
 
 
+import 'dart:convert';
+
 import 'package:gac/data_provider/model/employ_model.dart';
 import 'package:gac/data_provider/model/response_model.dart';
 import 'package:gac/data_provider/model/user_model.dart';
@@ -23,13 +25,13 @@ class UserService {
     ResponseModel responseModel = await NetworkUtilities.handleGetRequest(
 
         methodURL: '${URL.getURL(functionName: URL.KGetAllEmploys())}',
-        requestHeaders: requestHeaders,
+        // requestHeaders: requestHeaders,
         parserFunction: (userJson) {
-          return UserModel.fromJson(userJson);
+          return employModelFromJson(userJson);
         });
 
-    return ResponseModel<List<EmployModel>>(
-      responseData: (responseModel.isSuccess)?employModelFromJson(responseModel.responseData):
+    return ResponseModel(
+      responseData: (responseModel.isSuccess)?responseModel.responseData:
       null,
       isSuccess: responseModel.isSuccess,
       errorModel: responseModel.errorModel,
@@ -49,13 +51,13 @@ class UserService {
     ResponseModel responseModel = await NetworkUtilities.handleGetRequest(
 
         methodURL: '${URL.getURL(functionName: URL.KGetEmployDetails(id: userId))}',
-        requestHeaders: requestHeaders,
+        // requestHeaders: requestHeaders,
         parserFunction: (userJson) {
-          return UserModel.fromJson(userJson);
+          return UserModel.fromJson(jsonDecode(userJson));
         });
 
     return ResponseModel<UserModel>(
-      responseData: (responseModel.isSuccess)?UserModel.fromJson(responseModel.responseData):
+      responseData: (responseModel.isSuccess)?responseModel.responseData:
       null,
       isSuccess: responseModel.isSuccess,
       errorModel: responseModel.errorModel,

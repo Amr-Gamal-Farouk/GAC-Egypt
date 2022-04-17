@@ -118,7 +118,7 @@ class _LoginWidgetState extends State<LoginWidget> {
                             decoration: InputDecoration(
                               contentPadding: const EdgeInsets.symmetric(
                                   vertical: 15, horizontal: 10),
-                              hintText: "Email",
+                              hintText: "User Name",
                               filled: true,
                               border: OutlineInputBorder(
                                 borderRadius: BorderRadius.circular(10),
@@ -135,8 +135,6 @@ class _LoginWidgetState extends State<LoginWidget> {
                             validator: (value) {
                               if (value!.isEmpty) {
                                 return "Email can't be empty";
-                              } else if (validEmail(value)) {
-                                return null;
                               } else {
                                 return "Something Wrong Please Check input Data";
                               }
@@ -144,7 +142,7 @@ class _LoginWidgetState extends State<LoginWidget> {
                             controller: phoneNumCont,
                           ),
                         ),
-                        SizedBox(
+                        const SizedBox(
                           height: 20,
                         ),
                         Padding(

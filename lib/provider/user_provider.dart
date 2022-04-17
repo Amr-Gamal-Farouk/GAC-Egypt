@@ -12,7 +12,8 @@ class UserProvider extends ChangeNotifier{
 
   UserRepository userRepository=UserRepository();
   List<EmployModel> allEmploy=[];
-  late UserModel selectedUser;
+  List<EmployModel> favoriteEmployees=[];
+   UserModel? selectedUser;
   int? errorCode;
 
 
@@ -21,9 +22,33 @@ class UserProvider extends ChangeNotifier{
   Future<bool> getEmploys() async{
     try{
       ResponseModel<List<EmployModel>> userResponseModel =await userRepository.getEmploys();
+      // print (userResponseModel);
       if(userResponseModel.isSuccess){
+        print("QQ>> ${userResponseModel.responseData}");
         allEmploy=userResponseModel.responseData!;
-        print ("ALL Employs>> $allEmploy");
+        notifyListeners();
+        return true;
+      }else{
+       print("ERROR => ${userResponseModel.errorModel?.errorCode} : ${userResponseModel.errorModel?.errorMessage}");
+       errorCode= userResponseModel.errorModel?.errorCode;
+       notifyListeners();
+        return false;
+      }
+
+    }catch(e){
+      print("EX>> $e");
+      rethrow;
+      notifyListeners();
+      return false;
+    }
+
+  }
+  Future<bool> getEmployDetails({required String userId}) async{
+    try{
+      ResponseModel<UserModel> userResponseModel =await userRepository.getEmployDetails(userId: userId);
+      if(userResponseModel.isSuccess){
+        print ("Selected Employee>> $selectedUser");
+        selectedUser=userResponseModel.responseData!;
         notifyListeners();
         return true;
       }else{
@@ -39,26 +64,20 @@ class UserProvider extends ChangeNotifier{
     }
 
   }
-  Future<bool> getEmployDetails({required String userId}) async{
-    try{
-      ResponseModel<UserModel> userResponseModel =await userRepository.getEmployDetails(userId: userId);
-      if(userResponseModel.isSuccess){
-        selectedUser=userResponseModel.responseData!;
-        print ("Selected Employ>> $allEmploy");
-        notifyListeners();
-        return true;
-      }else{
-       print("ERROR => ${userResponseModel.errorModel?.errorCode} : ${userResponseModel.errorModel?.errorMessage}");
-       errorCode= userResponseModel.errorModel?.errorCode;
-       notifyListeners();
-        return false;
-      }
 
-    }catch(e){
+  favoriteAction({required EmployModel employModel}){
+    if (isFavorite(employModel: employModel)){
+      favoriteEmployees.remove(employModel);
       notifyListeners();
-      return false;
+    }else{
+    favoriteEmployees.add(employModel);
+    notifyListeners();
     }
 
+  }
+
+  bool isFavorite ({required EmployModel employModel}){
+    return favoriteEmployees.contains(employModel);
   }
 
 

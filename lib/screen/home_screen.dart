@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:gac/screen/direcrory_favorite_screen.dart';
 import 'package:gac/screen/employees_screen.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -171,6 +172,11 @@ class _HomeScreenState extends State<HomeScreen> {
             builder: (context) => const EmployeesScreen(),
           ));
     } else if (index == 1) {
+      Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) => const FavoriteScreen(),
+          ));
 
     } else if (index == 2) {
       // Navigator.push(

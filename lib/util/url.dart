@@ -1,5 +1,5 @@
 class URL {
-  static const String BASE_URL = "https://directory-pre.gacegy.com/Api/";
+  static const String BASE_URL = "http://directory-pre.gacegy.com/Api/";
 
   //-------------------------- API endpoints ---------------------------------
 

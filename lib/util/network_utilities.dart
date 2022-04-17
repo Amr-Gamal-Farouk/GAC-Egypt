@@ -29,25 +29,23 @@ class NetworkUtilities {
 
   static Future<ResponseModel<dynamic>> handleGetRequest(
       {String? methodURL,
-      Map<String, String>? requestHeaders,
+      // Map<String, String>? requestHeaders,
       Function? parserFunction}) async {
     ResponseModel getResponse;
 
     try {
       var serverResponse = await http
-          .get(Uri.parse(methodURL!), headers: requestHeaders)
+          .get(Uri.parse(methodURL!))//, headers: requestHeaders)
           .timeout(Duration(seconds: 30), onTimeout: () {
         throw SocketException;
       });
       print("@@@ ${serverResponse.statusCode} ${utf8.decode(serverResponse.bodyBytes)}");
-      if (serverResponse.statusCode == 200
-          || serverResponse.statusCode == 201
-      ||serverResponse.statusCode == 202) {
+      if (serverResponse.statusCode == 200) {
         print("DONE");
         getResponse = ResponseModel(
           isSuccess: true,
           errorModel: null,
-          responseData: (parserFunction!=null)?parserFunction(utf8.decode(serverResponse.bodyBytes)):utf8.decode(serverResponse.bodyBytes),
+          responseData: (parserFunction!=null)?parserFunction(serverResponse.body):serverResponse.body,
         );
       } else {
         getResponse = handleError(serverResponse);
@@ -82,7 +80,7 @@ class NetworkUtilities {
     networkLogger(
         url: methodURL,
         body: '',
-        headers: requestHeaders,
+        headers: "requestHeaders",
         response: getResponse);
     return getResponse;
   }

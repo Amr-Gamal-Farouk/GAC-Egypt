@@ -15,8 +15,10 @@ class UserRepository {
     return _instance;
   }
 
-  Future<ResponseModel<List<EmployModel>>> getEmploys() async =>
-      UserService.getEmploys();
+  Future<ResponseModel<List<EmployModel>>> getEmploys() async{
+    print("!!! ${UserService.getEmploys()}");
+     return UserService.getEmploys();
+  }
 
   Future<ResponseModel<UserModel>> getEmployDetails({required String userId}) async =>
       UserService.getEmployDetails(userId: userId);

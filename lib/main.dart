@@ -41,7 +41,7 @@ class _MyAppState extends State<MyApp> {
               debugShowCheckedModeBanner: false,
               title: 'GAC Egypt',
               theme: appTheme,
-              home: LoginScreen(),
+              home: LoginScreen()//LoginScreen(),
             ),
           );
         }
