@@ -135,8 +135,6 @@ class _LoginWidgetState extends State<LoginWidget> {
                             validator: (value) {
                               if (value!.isEmpty) {
                                 return "Email can't be empty";
-                              } else {
-                                return "Something Wrong Please Check input Data";
                               }
                             },
                             controller: phoneNumCont,
