@@ -70,18 +70,18 @@ Future<dynamic> showAlertDialog({required BuildContext context,required String c
 }
 
 
-Future<dynamic> showDetailsDialog({required BuildContext context,required EmployModel employModel}) {
-  return showAnimatedDialog(
-    context: context,
-    barrierDismissible: true,
-    builder: (BuildContext context) {
-      return Padding(
-        padding: const EdgeInsets.all(8.0),
-        child: Center(child: EmployeeDetails(employee: employModel)),
-      );
-    },
-    animationType: DialogTransitionType.size,
-    curve: Curves.fastOutSlowIn,
-    duration: Duration(seconds: 1),
-  );
-}
+// Future<dynamic> showDetailsDialog({required BuildContext context,required EmployModel employModel}) {
+//   return showAnimatedDialog(
+//     context: context,
+//     barrierDismissible: true,
+//     builder: (BuildContext context) {
+//       return Padding(
+//         padding: const EdgeInsets.all(8.0),
+//         child: Center(child: EmployeeDetails(employee: employModel)),
+//       );
+//     },
+//     animationType: DialogTransitionType.size,
+//     curve: Curves.fastOutSlowIn,
+//     duration: Duration(seconds: 1),
+//   );
+// }

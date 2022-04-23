@@ -34,12 +34,13 @@ class _EmployeesScreenState extends State<EmployeesScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text("Directory"),
-        automaticallyImplyLeading: true,
-      ),
-      body:
+    return Container(
+      // appBar: AppBar(
+      //   title: const Text("Directory"),
+      //   automaticallyImplyLeading: true,
+      // ),
+      // body:
+      child:
       (isLoading) ? Center(child: const CircularProgressIndicator(color: Colors.indigo,))
           : Consumer <UserProvider>(
         builder: (context, provider, child) {

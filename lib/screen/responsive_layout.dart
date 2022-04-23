@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:gac/screen/home_screen.dart';
+import 'package:gac/screen/home_screen_option_two.dart';
 import 'package:gac/util/my_connectivity.dart';
 import 'package:provider/provider.dart';
 
@@ -42,17 +43,18 @@ class _ResponsiveLayoutState extends State<ResponsiveLayout> {
     return Scaffold(
       body: LayoutBuilder(
         builder: (context, dimens) {
-          if (dimens.maxWidth > 1000) {
-            return HomeScreen(crossAxisCount: 6,);
-          } else if (dimens.maxWidth > 800 ) {
-            return HomeScreen(crossAxisCount: 5,);
-          } else if (dimens.maxWidth >600) {
-            return HomeScreen(crossAxisCount: 4,);
-          }else if (dimens.maxWidth >430) {
-            return HomeScreen(crossAxisCount: 3,);
-          } else {
-            return HomeScreen(crossAxisCount: 2,);
-          }
+          return HomeScreenOption2();
+          // if (dimens.maxWidth > 1000) {
+          //   return HomeScreen(crossAxisCount: 6,);
+          // } else if (dimens.maxWidth > 800 ) {
+          //   return HomeScreen(crossAxisCount: 5,);
+          // } else if (dimens.maxWidth >600) {
+          //   return HomeScreen(crossAxisCount: 4,);
+          // }else if (dimens.maxWidth >430) {
+          //   return HomeScreen(crossAxisCount: 3,);
+          // } else {
+          //   return HomeScreen(crossAxisCount: 2,);
+          // }
         },
       ),
     );

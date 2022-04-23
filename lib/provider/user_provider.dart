@@ -47,8 +47,8 @@ class UserProvider extends ChangeNotifier{
     try{
       ResponseModel<UserModel> userResponseModel =await userRepository.getEmployDetails(userId: userId);
       if(userResponseModel.isSuccess){
-        print ("Selected Employee>> $selectedUser");
         selectedUser=userResponseModel.responseData!;
+        print ("Selected Employee>> $selectedUser");
         notifyListeners();
         return true;
       }else{
